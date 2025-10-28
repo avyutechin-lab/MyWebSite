@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>TimyTinker AI</title>
+  <title>TinyTinker AI</title>
   <link href="https://fonts.googleapis.com/css?family=Inter:600,700,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -554,6 +554,10 @@
     @media (max-width: 768px) {
       .navbar {
         padding: var(--space-16);
+        background: rgba(255, 255, 255, 0.85); /* lighter background for contrast */
+      }
+      .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.85); /* lighter background for contrast */
       }
 
       .navbar-menu {
@@ -563,8 +567,11 @@
       .navbar-link {
         font-size: 13px;
         padding: var(--space-8);
+        color: var(--color-slate-900); /* dark color for visibility */
       }
-
+      .navbar-link:hover, .navbar-link:focus {
+    color: var(--color-primary);
+      }
       .heading {
         font-size: var(--font-size-3xl);
       }
@@ -580,20 +587,24 @@
     }
 
       .carousel-btn.prev {
-        left: -55px;
+        left: -10px;
       }
 
       .carousel-btn.next {
-        right: -55px;
+        right: -10px;
       }
-
+       .carousel-btn {
+       padding: 12px 14px;
+      font-size: 20px;
+      }
       .feature-card {
         width: 90vw;
-        height: auto;
+        height: 360px; /* Keep fixed height, not auto */
       }
       .flip-front, .flip-back {
-        height: auto;
-        position: relative;
+        position: absolute; /* Keep absolute for stacking */
+        width: 100%;
+        height: 100%; /* Match the container height */
       }
       .hero-carousel {
        padding: 0 60px;
@@ -604,7 +615,7 @@
 <body>
   <!-- Sticky Navigation -->
   <nav class="navbar">
-    <a href="#" class="navbar-brand">TimyTinker AI</a>
+    <a href="#" class="navbar-brand">TinyTinker AI</a>
     <ul class="navbar-menu">
       <li><a href="#home" class="navbar-link">Home</a></li>
       <li><a href="#goal" class="navbar-link">Goal</a></li>
@@ -735,7 +746,7 @@
   <!-- Hero Section -->
   <header id="home" class="hero">
     <div class="hero-content">
-      <h1 class="heading">TimyTinker AI</h1>
+      <h1 class="heading">TinyTinker AI</h1>
       <p class="subheading">Transforming Learning with Technology</p>
       
       <!-- Image Carousel -->
@@ -890,7 +901,7 @@
   </section>
 
   <footer id="contact">
-    <p>&copy; 2025 TimyTinker AI</p>
+    <p>&copy; 2025 TinyTinker AI</p>
   </footer>
 </body>
 </html>
