@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>AvyGen AI - Mission</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+      --color-red-500-rgb: 192, 21, 47;
+      --color-red-400-rgb: 255, 84, 89;
+      --color-orange-500-rgb: 168, 75, 47;
+      --color-orange-400-rgb: 230, 129, 97;
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-btn-primary-text: var(--color-cream-50);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-error: var(--color-red-500);
+      --color-success: var(--color-teal-500);
+      --color-warning: var(--color-orange-500);
+      --color-info: var(--color-slate-500);
+      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+      --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+      --focus-ring: 0 0 0 3px var(--color-focus-ring);
+      --focus-outline: 2px solid var(--color-primary);
+      --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-size-3xl: 24px;
+      --font-size-4xl: 30px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --space-8: 8px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --radius-base: 8px;
+      --radius-lg: 12px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+      /* Colors used in gradients */
+      --color-purple-500: rgba(168, 85, 247, 1);
+      --color-purple-600: rgba(147, 51, 234, 1);
+      --color-gold-500: rgba(251, 191, 36, 1);
+      --color-emerald-500: rgba(16, 185, 129, 1);
+      --color-gradient: linear-gradient(135deg, #e8d7f5 0%, #c7e9f5 25%, #fef9d6 50%, #fde4c9 75%, #ffe5d9 100%);
+
+      /* Font sizes */
+      --font-size-5xl: 48px;
+
+      /* Spacing */
+      --space-48: 48px;
+
+      /* Shadows */
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      /* Radius */
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-gray-400-rgb: 119, 124, 124;
+        --color-teal-300-rgb: 50, 184, 198;
+        --color-gray-300-rgb: 167, 169, 169;
+        --color-gray-200-rgb: 245, 245, 245;
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+        --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-error: var(--color-red-400);
+        --color-success: var(--color-teal-300);
+        --color-warning: var(--color-orange-400);
+        --color-info: var(--color-gray-300);
+        --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+        --color-btn-primary-text: var(--color-slate-900);
+        --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+        --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      background: linear-gradient(135deg, #e8d7f5 0%, #c7e9f5 25%, #fef9d6 50%, #fde4c9 75%, #ffe5d9 100%);
+      /* background: var(--gradient-bg); */
+      background: var(--color-gradient);
+      color: var(--color-slate-900);
+      line-height: 1.7;
+      overflow-x: hidden;
+      color: var(--color-text);
+      scroll-behavior: smooth;
+      line-height: var(--line-height-normal);
+    }
+
+    /* Sticky Header */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      padding: var(--space-16) var(--space-32);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .navbar-brand {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: var(--space-32);
+      list-style: none;
+    }
+
+    .navbar-link {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-base);
+      padding: var(--space-8) var(--space-16);
+      border-radius: var(--radius-base);
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .navbar-link:hover {
+      background: var(--color-secondary);
+      color: var(--color-primary);
+    }
+
+    .navbar-link:focus-visible {
+      outline: var(--focus-outline);
+      outline-offset: 2px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+    position: relative;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-base);
+    padding: var(--space-8);
+    margin-top: var(--space-8);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s var(--ease-standard);
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: var(--space-8) var(--space-16);
+    text-decoration: none;
+    color: var(--color-text);
+    border-radius: var(--radius-base);
+    transition: all var(--duration-fast);
+  }
+
+  .dropdown-content a:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+  }
+
+    /* Hero Mission */
+    .hero-mission {
+      padding: 140px var(--space-32) 80px; text-align: center; position: relative;
+      background: linear-gradient(135deg, rgba(232,215,245,0.8) 0%, rgba(199,233,245,0.8) 100%);
+    }
+    .mission-badge {
+      display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--color-purple-500), var(--color-purple-600));
+      color: white; padding: 12px 24px; border-radius: 50px; font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-24); box-shadow: 0 8px 24px rgba(168,85,247,0.3);
+    }
+    .mission-title { font-size: var(--font-size-5xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); background: linear-gradient(135deg, var(--color-teal-500), var(--color-purple-500)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .mission-subtitle { font-size: var(--font-size-xl); color: #5a6f5f; max-width: 800px; margin: 0 auto; }
+
+    /* Mission Pillars */
+    .pillars-section {
+      padding: 80px var(--space-32); background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    }
+    .section-title { text-align: center; font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-48); color: var(--color-slate-900); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-32); }
+    .pillar-card {
+      background: white; padding: var(--space-32); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1); position: relative; overflow: hidden;
+    }
+    .pillar-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--color-teal-500), var(--color-purple-500), var(--color-orange-400));
+    }
+    .pillar-card:hover { transform: translateY(-12px); box-shadow: 0 32px 60px rgba(0,0,0,0.15); }
+    .pillar-icon { width: 72px; height: 72px; border-radius: 20px; margin-bottom: var(--space-24); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .pillar-card h3 { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-16); }
+    .pillar-card p { color: #64748b; line-height: 1.7; }
+
+    /* Timeline */
+        .timeline-section { 
+      padding: 80px var(--space-32); 
+      background: var(--color-gradient); 
+    }
+    .timeline-container { max-width: 1000px; margin: 0 auto; position: relative; }
+    .timeline { position: relative; padding: 60px 0; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--color-teal-500), var(--color-purple-500));
+      z-index: 1;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    /* Odd items (1, 3, ...) → content on the RIGHT */
+    .timeline-item:nth-child(odd) {
+      justify-content: flex-end;
+      padding-right: 20px;
+    }
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: auto;
+    }
+    .timeline-item:nth-child(odd) .timeline-content::before {
+      content: '';
+      position: absolute;
+      left: -24px;               /* arrow points left → toward the center line */
+      top: 28px;
+      border: 12px solid transparent;
+      border-right-color: white;
+    }
+
+    /* Even items (2, 4, ...) → content on the LEFT */
+    .timeline-item:nth-child(even) {
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
+    .timeline-item:nth-child(even) .timeline-content::before {
+      content: '';
+      position: absolute;
+      right: -24px;              /* arrow points right */
+      top: 28px;
+      border: 12px solid transparent;
+      border-left-color: white;
+    }
+
+    .timeline-content {
+      width: 45%;
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .timeline-number {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      background: #a855f7;
+      color: white;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 22px;
+      z-index: 2;
+      box-shadow: 0 8px 20px rgba(168,85,247,0.4);
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1001; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto; /* 5% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    /* Close Button */
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Modal Form Styles (optional, customize as needed) */
+    .modal-content h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .modal-content button {
+      background: linear-gradient(135deg, var(--color-purple-500), var(--color-teal-500));
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: var(--font-weight-semibold);
+      transition: all 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168,85,247,0.4);
+    }
+
+        .modal select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: white;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 6.646a.5.5 0 0 1 .708 0L8 9.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .modal select:focus {
+      outline: none;
+      border-color: var(--color-teal-500);
+      box-shadow: 0 0 0 3px rgba(33,128,141,0.2);
+    }
+    /* CTA Section */
+    .cta-section {
+      padding: 80px var(--space-32); text-align: center; background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(33,128,141,0.1));
+    }
+    .cta-title { font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); margin-bottom: var(--space-24); }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--color-purple-500), var(--color-teal-500)); color: white;
+      padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xl); box-shadow: 0 12px 32px rgba(168,85,247,0.4); display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(168,85,247,0.5); }
+
+    /* Footer */
+    footer { padding: var(--space-32); text-align: center; color: #64748b; font-size: 14px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar { padding: var(--space-16); flex-direction: column; gap: var(--space-16); }
+      .navbar-menu { gap: var(--space-16); flex-wrap: wrap; justify-content: center; }
+      .hero-mission { padding: 120px var(--space-16) 60px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .timeline::before { left: 28px; }
+      .timeline-item { padding: 0 !important; justify-content: flex-start !important; }
+      .timeline-content { width: calc(100% - 80px); margin-left: 80px; }
+      .timeline-content::before { left: -24px !important; border-right-color: white !important; border-left-color: transparent !important; }
+      .timeline-number { left: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="/" class="navbar-brand">AvyGen AI</a>
+    <ul class="navbar-menu">
+      <li><a href="index.html" class="navbar-link">Home</a></li>
+      <li class="dropdown">
+        <a href="goal.html" class="navbar-link">Goal</a>
+        <!-- <div class="dropdown-content">
+          <a href="#student_yeild">Student Yield</a>
+        </div> -->
+      </li>
+      <li><a href="#mission" class="navbar-link">Mission</a></li>
+      <li class="dropdown">
+        <a href="#contact" class="navbar-link">Contact Us</a>
+        <div class="dropdown-content">
+          <a href="mailto:hello@avygen.com">hello@avygen.com</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Mission Section -->
+  <section class="hero-mission">
+    <div class="mission-badge">
+      🚀 Our Guiding Purpose
+    </div>
+    <h1 class="mission-title">Empowering Every Child to Master AI Communication</h1>
+    <p class="mission-subtitle">
+      We believe every child deserves to communicate confidently, create fearlessly, and collaborate intelligently with AI.
+      Our mission transforms learning into mutual discovery—where children and AI grow together.
+    </p>
+  </section>
+
+  <!-- Mission Pillars -->
+  <section class="pillars-section">
+    <h2 class="section-title">Our Five Pillars</h2>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon" style="background: linear-gradient(135deg, #a8b4ff, #c4b5fd);">✨</div>
+        <h3>Creative Self-Expression</h3>
+        <p>Unlock authentic voice through AI-guided storytelling, emotional writing, and visual inspiration that transforms words into art.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">🎯</div>
+        <h3>Confidence Building</h3>
+        <p>Develop fearless communication skills for writing and speech through personalized feedback and supportive peer collaboration.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">⌨️</div>
+        <h3>Digital Mastery</h3>
+        <p>Master essential digital skills like typing and prompt engineering to thrive in tomorrow's AI-powered world.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon" style="background: linear-gradient(135deg, #ffd452, #ffedbf);">🌍</div>
+        <h3>Multilingual Fluency</h3>
+        <p>Bridge cultures through AI-powered language mastery, tone perfection, and global communication skills for all ages.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon" style="background: linear-gradient(135deg, #c0ecfc, #b8e0f7);">🧠</div>
+        <h3>Self-Directed Learning</h3>
+        <p>Empower lifelong learners with psychological insights, real-time feedback, and personalized growth paths.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Journey -->
+  <section class="timeline-section">
+    <div class="timeline-container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: var(--space-16);">Our Journey Forward</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-number">1</div>
+          <div class="timeline-content">
+            <h3>2026: Launch Core Platform</h3>
+            <p>Deploy AI writing coach, typing mastery, and real-time feedback for 10,000 students across 100 schools.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">2</div>
+          <div class="timeline-content">
+            <h3>2027: Global Language Expansion</h3>
+            <p>Add 12 languages with cultural tone adaptation and expand to 50+ countries with localized curricula.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">3</div>
+          <div class="timeline-content">
+            <h3>2028: Prompt Engineering Academy</h3>
+            <p>Introduce advanced AI collaboration training for students and educators worldwide.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">4</div>
+          <div class="timeline-content">
+            <h3>2030: AI-Human Learning Network</h3>
+            <p>Create global ecosystem where millions of students and AI systems learn mutually from each other.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2 class="cta-title">Join the Learning Revolution</h2>
+    <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-32); max-width: 600px; margin-left: auto; margin-right: auto;">
+      Partner with us to transform education for the next generation.
+    </p>
+    <a href="#" class="cta-btn" onclick="openModal()">Get Involved Today</a>
+  </section>
+
+
+  <!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Get Involved</h2>
+    <p>We’d love to know how you’d like to partner with us!</p>
+
+    <form id="contactForm">
+      <input type="text" id="userName" placeholder="Your Name" required>
+
+      <input type="email" id="userEmail" placeholder="Your Email" required>
+
+      <select id="userRole" required>
+        <option value="" disabled selected>Select your role</option>
+        <option value="School / Institution">School / Institution</option>
+        <option value="Teacher / Educator">Teacher / Educator</option>
+        <option value="Parent / Guardian">Parent / Guardian</option>
+      </select>
+
+      <textarea id="userMessage" placeholder="Your Message (optional)" rows="4"></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+  <footer>
+    <p>&copy; 2025 AvyGen AI. Empowering Tomorrow's Communicators Today.</p>
+  </footer>
+
+  <script>
+  function openModal() {
+    document.getElementById('myModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Close when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('myModal');
+    if (event.target === modal) closeModal();
+  };
+
+  // FORM SUBMIT → OPEN EMAIL CLIENT (works everywhere)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop normal submit
+
+    const name    = document.getElementById('userName').value.trim();
+    const email   = document.getElementById('userEmail').value.trim();
+    const role    = document.getElementById('userRole').value;
+    const message = document.getElementById('userMessage').value.trim();
+
+    // Build exactly what you asked for
+    const subject = `Let's Connect with ${name}`;
+
+    const body = `Hi AvyGen,\n\n` +
+                 `This is ${name},\n` +
+                 `I am a ${role},\n` +
+                 `would like to join with you.\n\n` +
+                 `My Email address is ${email}.\n` +
+                 (message ? `I want to ${message}.\n\n` : `\n`) +
+                 `Best regards,\n${name}`;
+
+    // THE FIX: Create a temporary <a> element and click it
+    const mailtoLink = document.createElement('a');
+    mailtoLink.href = `mailto:hello@avygen.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // These two lines are the magic that forces the mail client to open
+    mailtoLink.style.display = 'none';
+    document.body.appendChild(mailtoLink);
+    mailtoLink.click();
+    document.body.removeChild(mailtoLink);
+
+    // Optional: close modal + reset form
+    closeModal();
+    this.reset();
+    document.getElementById('userRole').selectedIndex = 0;
+  });
+</script>
+</body>
+</html>
