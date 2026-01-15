@@ -157,7 +157,50 @@
       background: var(--color-secondary);
       color: var(--color-primary);
     }
+  /* Dropdown */
+    .dropdown {
+    position: relative;
+  }
 
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-base);
+    padding: var(--space-8);
+    margin-top: var(--space-8);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s var(--ease-standard);
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: var(--space-8) var(--space-16);
+    text-decoration: none;
+    color: var(--color-text);
+    border-radius: var(--radius-base);
+    transition: all var(--duration-fast);
+  }
+
+  .dropdown-content a:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+  }
     /* Hero */
     .hero {
       padding: 140px var(--space-32) 100px;
@@ -314,7 +357,7 @@
   <section class="cards-section">
     <div class="cards-grid">
       <!-- Card 1 - Links to goal.html -->
-      <a href="https://kiboai.in/" class="clickable-card">
+      <a href="https://kibo.avygen.com/" class="clickable-card">
         <div class="card-icon" style="background: linear-gradient(135deg, #e879f9, #8b5cf6);">🎯</div>
         <h3 class="card-title">Let's learn</h3>
         <p class="card-description">
@@ -323,7 +366,7 @@
       </a>
 
       <!-- Card 2 - Links to mission.html -->
-      <a href="https://scholar-pathways-app.lovable.app/" class="clickable-card">
+      <a href="https://app.avygen.com/" class="clickable-card">
         <div class="card-icon" style="background: linear-gradient(135deg, #fbbf24, #f59e0b);">🚀</div>
         <h3 class="card-title">Let's Dive into the universe of stories, we call it StoryVerse</h3>
         <p class="card-description">
@@ -335,7 +378,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 AvyGen AI. Engineering the Future of Human-AI Learning Synergy.</p>
+    <p>&copy; 2026 AvyGen AI. Engineering the Future of Human-AI Learning Synergy.</p>
   </footer>
 
 </body>
