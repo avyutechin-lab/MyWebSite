@@ -548,10 +548,165 @@
       }
     }
 
+/* ===== MODAL & SLIDER STYLES (NEW - ADDED) ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--color-white);
+      width: 85vw;
+      max-width: 900px;
+      height: 85vh;
+      max-height: 750px;
+      padding: 2.5rem;
+      border-radius: var(--border-radius-xl);
+      transform: scale(0.8) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-2xl);
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-overlay.open .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(71, 85, 105, 0.1);
+    }
+
+    .modal-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-slate-900);
+      line-height: 1.2;
+      align-items:center;
+    }
+
+    .close-btn {
+      background: rgba(71, 85, 105, 0.1);
+      border: none;
+      font-size: 1.75rem;
+      cursor: pointer;
+      color: var(--color-slate-500);
+      padding: 0.75rem;
+      /* border-radius: var(--border-radius-lg); */
+      border-radius: 50%
+      transition: all var(--transition-normal);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background: var(--color-slate-200);
+      color: var(--color-slate-900);
+      transform: scale(1.05);
+      border-radius: 50%
+    }
+
+    .modal-body {
+      flex: 1;
+      color: var(--color-slate-700);
+      line-height: 1.7;
+    }
+
+    .slider-tab {
+      position: fixed;
+      top: 20%;
+      right: 20px;
+      width: 52px;
+      height: 104px;
+      background: linear-gradient(135deg, var(--color-purple-500), var(--color-gold-500));
+      border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10000;
+      box-shadow: var(--shadow-xl);
+      transition: all 0.3s ease;
+    }
+
+    .slider-tab:hover {
+      width: 64px;
+      right: 12px;
+      box-shadow: var(--shadow-2xl);
+    }
+
+    .slider-tab .tab-icon {
+      font-size: 1.75rem;
+    }
 
 
     /* Responsive */
     @media (max-width: 768px) {
+
+     .modal-content {
+        width: 95vw !important;          /* Line ~45: Full width on mobile */
+        max-width: none !important;      /* Remove desktop cap */
+        height: auto !important;         /* Allow natural height */
+        min-height: 85vh !important;     /* Min height for usability */
+        max-height: none !important;     /* No hard cap */
+        padding: 1.5rem 1rem !important; /* Reduce padding (line ~48) */
+      }
+      
+      .modal-header {
+        flex-direction: column !important; /* Stack logo/title/close vertically (line ~70) */
+        align-items: center !important;
+        gap: 1rem !important;
+      }
+      
+      .modal-body {
+        grid-template-columns: 1fr !important; /* Single column (line ~100) */
+        gap: 1.5rem !important;
+        padding-bottom: 2rem !important; /* Less bottom space */
+        align-items: center !important;  /* Center content */
+      }
+      
+      .ecosystem-container {
+        width: 320px !important;         /* Scale down ecosystem (line ~150) */
+        height: 320px !important;
+        max-width: 90vw !important;
+      }
+      .slider-tab {
+        right: 12px;
+        width: 48px;
+        height: 96px;
+      }
+      .slider-tab:hover {
+        width: 56px;
+      }
+
       .navbar {
         padding: var(--space-16);
         background: rgba(255, 255, 255, 0.85); /* lighter background for contrast */
@@ -609,25 +764,219 @@
       .hero-carousel {
        padding: 0 60px;
       }
+
+      .close-btn {
+        width: 44px !important;          /* Larger touch target (line ~80) */
+        height: 44px !important;
+        font-size: 1.8rem !important;
+      }
+      
+      .persona {
+        width: 64px !important;          /* Smaller but touch-friendly (line ~170) */
+        height: 64px !important;
+        font-size: 11px !important;
+      }
+      
+      .content-panel {
+        width: 160px !important;         /* Smaller panels (line ~190) */
+        height: 120px !important;
+        font-size: 11px !important;
+      }
+      
+      .feature-point {
+        padding: 0.8rem 1rem !important; /* Compact skills list (line ~110) */
+        font-size: 0.9rem !important;
+      }
+      
+      h3 {
+        font-size: 1.2rem !important;    /* Smaller headings */
+      }
+    }
+    @media (max-width: 768px) {
+      .modal-content {
+        height: auto !important;
+        max-height: 92vh !important;
+        min-height: unset !important;
+        margin: 10px auto !important;
+        padding: 1.4rem 1rem !important;
+      }
+      .modal-overlay {
+        align-items: flex-start !important;
+        padding: 8px 0;
+      }
+      .modal-footer-note {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+  .content-panel {
+    transform: translateX(-50%) !important;
+    left: 50% !important;
+    right: auto !important;
+    width: 260px;
+    max-width: 86vw;
+  }
+}
+
+    @media (max-width: 768px) {
+
+  .content-panel {
+    width: 70vw !important;
+    max-width: 260px !important;
+    font-size: 12.5px !important;     /* slightly smaller text */
+    padding: 12px 14px !important;
+    line-height: 1.4;
+  }
+
+  /* Give different vertical positions */
+  .content-panel:nth-child(1) {       /* first panel created */
+    top: 5% !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+  .content-panel:nth-child(2) {       /* second panel */
+    top: 42% !important;              /* adjust this value 35–50% */
+    transform: translate(-50%, 0) !important;
+  }
+}
+  @media (max-width: 768px) {
+      .slider-tab {
+        right: 8px !important;           
+        border-radius: 12px 0 0 12px;    
+        width: 50px !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+      }
+
+      .slider-tab:hover,
+      .slider-tab:active {
+        right: 4px !important;
+        width: 58px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        
+        /* Core fixes */
+        transform: translate3d(0, 0, 0);           /* force GPU layer */
+        will-change: transform, opacity;           /* hint browser */
+        backface-visibility: hidden;               /* reduce flickering */
+        -webkit-backface-visibility: hidden;
+        
+        /* Make it feel more solid */
+        background: rgba(255, 255, 255, 0.94) !important;  /* higher opacity */
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.12) !important;
+        
+        /* Prevent resize jumps */
+        height: 70px;                              /* give explicit height */
+        padding: 0 16px;
+        box-sizing: border-box;
+      }
+
+      /* Very helpful on many Android devices */
+      html, body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        -webkit-overflow-scrolling: touch;
+        padding-top: 70px;                         /* ← match navbar height */
+      }
+
+      /* Give hero space so content doesn't jump under navbar */
+      .hero {
+        padding-top: 90px !important;              /* adjust if your navbar is taller/shorter */
+        margin-top: 0 !important;
+      }
+    }
+
+@media (max-width: 768px) {
+
+      /* Force consistent fixed positioning */
+      .navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 1000 !important;
+
+        /* Make it transparent + blurred from the start on mobile */
+        background: rgba(255, 255, 255, 0.65) !important;   /* semi-transparent white */
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;     /* critical for Android/Chrome */
+
+        /* Force GPU rendering to reduce jump/flicker */
+        transform: translate3d(0, 0, 0) !important;
+        will-change: transform, background, opacity !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+
+        /* Explicit dimensions to fight resize jumps */
+        height: 70px;                          /* adjust if your navbar is taller/shorter */
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
+
+        transition: background 0.3s ease, box-shadow 0.3s ease !important;
+      }
+
+      /* When scrolled — make it more solid but still slightly transparent */
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.92) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+      }
+
+      /* Give body top padding so hero/content doesn't go under navbar */
+      body {
+        padding-top: 70px !important;          /* must match .navbar height */
+      }
+
+      /* Make sure hero starts below navbar */
+      .hero {
+        padding-top: 20px !important;          /* extra breathing room */
+        margin-top: 0 !important;
+      }
+
+      /* Improve overall scroll behavior */
+      html, body {
+        height: 100%;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    /* ------------------------------------------------------ */
+
+    @keyframes metallicGlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 <body>
   <!-- Sticky Navigation -->
-  <nav class="navbar">
-    <a href="#" class="navbar-brand">AvyGen AI</a>
-    <ul class="navbar-menu">
-      <li><a href="#home" class="navbar-link">Home</a></li>
-      <li><a href="goal.html" class="navbar-link">Goal</a></li>
-      <li><a href="mission.html" class="navbar-link">Mission</a></li>
-      <li class="dropdown">
-        <a href="#contact" class="navbar-link" onclick="toggleDropdown(event)">Contact Us</a>
-        <div class="dropdown-content">
-          <a href="mailto:hello@avygen.com">hello@avygen.com</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
+<nav class="navbar">
+  <a href="#" class="navbar-brand">AvyGen AI</a>
+  <ul class="navbar-menu">
+    <li><a href="#home" class="navbar-link">Home</a></li>
+    <li><a href="goal.html" class="navbar-link">Goal</a></li>
+    <li><a href="mission.html" class="navbar-link">Mission</a></li>
+    <li class="dropdown">
+      <a href="#contact" class="navbar-link" onclick="toggleDropdown(event)">Contact Us</a>
+      <div class="dropdown-content">
+        <a href="mailto:hello@avygen.com">hello@avygen.com</a>
+      </div>
+    </li>
+  </ul>
+</nav>
 
   <script>
   function toggleDropdown(event) {
@@ -903,5 +1252,624 @@
   <footer id="contact">
     <p>&copy; 2026 AvyGen AI</p>
   </footer>
+
+  <!-- ===== MODAL & SLIDER (NEW - INTEGRATED) ===== -->
+  <input type="checkbox" id="modal-toggle" style="display: none;">
+
+  <!-- Always Visible Sidebar Tab -->
+  <div class="slider-tab" id="sliderTab">
+    <span class="tab-icon">✨</span>
+  </div>
+
+  <!-- Centered Welcome Modal -->
+<!-- Centered Welcome Modal – Title Centered + Logo on Left -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content" style="
+    width: 94vw;
+    max-width: 1280px;
+    min-height: 92vh;                  /* changed from height: 92vh */
+    max-height: 920px;
+    padding: 3rem 3.5rem;
+    background: linear-gradient(135deg, #0f172a 0%, #0f1d36 50%, #111d3a 100%);
+    color: #e2e8f0;
+    border: 1px solid #1e293b;
+    border-radius: 20px;
+    box-shadow: 0 30px 70px -20px rgba(0,0,0,0.55);
+    overflow-y: auto;                   
+    display: flex;                      
+    flex-direction: column;             
+    backdrop-filter: blur(8px);
+    position: relative;
+  ">
+
+    <div class="modal-header" style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 1.6rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+      gap: 1rem;
+    ">
+      
+      <!-- LEFT: Logo (upload your logo.png here) -->
+      <div class="logo-container" style="
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(99, 102, 241, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+      ">
+        <img src="https://avyutechin-lab.github.io/MyWebSite/Logo_transparent_back.jpg" alt="AvyGen AI Logo" style="
+          width: 32px;
+          height: 32px;
+          object-fit: contain;
+          border-radius: 6px;
+        " />
+      </div>
+
+      <!-- CENTER: Title + Prompt -->
+      <div class="title-prompt-container" style="
+        flex: 1;
+        text-align: center;
+        margin-left: -1rem; /* Slight adjustment for spacing */
+      ">
+        <h2 class="modal-title" style="
+          font-size: clamp(2.1rem, 5vw, 2.9rem);
+          color: #c7d2fe;
+          letter-spacing: -0.4px;
+          font-weight: 700;
+          margin: 0 0 0.5rem 0;
+        ">Welcome to Your AI Skill Coach</h2>
+
+        <p style="
+          text-align: center; margin: -0.8rem 0 1.8rem 0;
+          color: #94a3b8; font-size: 0.98rem; font-weight: 400;
+          line-height: 1.4;
+        ">
+          Tap <strong style="color:#c7d2fe">Student</strong>, <strong style="color:#5eead4">Teacher</strong> or <strong style="color:#fcd34d">Parent</strong> 
+          to discover how they collaborate ✨
+        </p>
+      </div>
+
+      <!-- RIGHT: Close Button -->
+      <button class="close-btn" id="closeBtn" style="
+        background: #1e293b;
+        color: #94a3b8;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        margin-top: 0.5rem;
+      " onmouseover="this.style.background='#334155'; this.style.color='#cbd5e1'" onmouseout="this.style.background='#1e293b'; this.style.color='#94a3b8'">×</button>
+    </div>
+
+    <div class="modal-body" style="
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px 1fr;
+  gap: 2.8rem;
+  align-items: start;           /* keep content starting from top */
+  padding: 0 0.5rem 3rem 0.5rem; /* ← increased bottom padding to 3rem – this creates space below the grid */
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+">
+
+      <!-- LEFT COLUMN -->
+      <div class="left-skills" style="display: flex; flex-direction: column; gap: 1rem;">
+        <h3 style="
+          color: #a5b4fc;
+          font-size: 1.4rem;
+          font-weight: 600;
+          margin-bottom: 1.1rem;
+          text-align: center;
+          letter-spacing: 0.3px;
+        ">Core Capabilities</h3>
+
+        <div class="feature-point" style="
+          background: rgba(99, 102, 241, 0.08);
+          border-left: 3px solid #6366f1;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(99,102,241,0.14)'" onmouseout="this.style.background='rgba(99,102,241,0.08)'">Prompt Engineering</div>
+
+        <div class="feature-point" style="
+          background: rgba(45, 212, 191, 0.08);
+          border-left: 3px solid #2dd4bf;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(45,212,191,0.14)'" onmouseout="this.style.background='rgba(45,212,191,0.08)'">Content Creation</div>
+
+        <div class="feature-point" style="
+          background: rgba(251, 191, 36, 0.07);
+          border-left: 3px solid #fbbf24;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(251,191,36,0.13)'" onmouseout="this.style.background='rgba(251,191,36,0.07)'">Authoring & Storytelling</div>
+
+        <div class="feature-point" style="
+          background: rgba(59, 130, 246, 0.08);
+          border-left: 3px solid #3b82f6;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(59,130,246,0.14)'" onmouseout="this.style.background='rgba(59,130,246,0.08)'">Public Speaking</div>
+      </div>
+
+      <!-- CENTER – Ecosystem -->
+      <div class="ecosystem-wrapper" style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      ">
+        <div class="ecosystem-container" id="ecosystem" style="position: relative; width: 420px; height: 420px; margin: 0 auto;">
+
+          <!-- Shield – softer metallic -->
+          <svg class="ecosystem-svg" viewBox="0 0 580 580" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.7;">
+            <defs>
+              <linearGradient id="shieldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00ffff"/>
+                <stop offset="50%" stop-color="#8a2be2"/>
+                <stop offset="100%" stop-color="#00ffff"/>
+            </linearGradient>
+            </defs>
+            <path 
+              stroke="url(#shieldStroke)" 
+              stroke-width="7" 
+              fill="none"
+              stroke-dasharray="90 36" 
+              stroke-linecap="round" 
+              d="M 290 30 L 15 100 L 25 340 Q 75 420 175 470 L 290 520 L 375 470 Q 475 420 555 340 L 565 100 L 290 30 Z">
+              <animate attributeName="stroke-dashoffset" from="0" to="-126" dur="9s" repeatCount="indefinite"/>
+            </path>
+          </svg>
+
+          <!-- Arrows – cleaner & thinner -->
+          <svg viewBox="0 0 580 580" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none;">
+            <defs>
+              <linearGradient id="st-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a5b4fc"/>
+                <stop offset="100%" stop-color="#818cf8"/>
+              </linearGradient>
+              <linearGradient id="tp-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#5eead4"/>
+                <stop offset="100%" stop-color="#2dd4bf"/>
+              </linearGradient>
+              <linearGradient id="ps-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fcd34d"/>
+                <stop offset="100%" stop-color="#fbbf24"/>
+              </linearGradient>
+            </defs>
+
+            <path stroke="url(#st-grad)" stroke-width="4" fill="none" stroke-linecap="round"
+                  d="M 290 430 Q 480 350 450 140" style="filter: drop-shadow(0 0 6px rgba(165,180,252,0.3));">
+              <animate attributeName="stroke-dasharray" values="0,100; 100,0" dur="4s" repeatCount="indefinite"/>
+            </path>
+
+            <path stroke="url(#tp-grad)" stroke-width="4" fill="none" stroke-linecap="round"
+                  d="M 450 140 Q 290 50 130 140" style="filter: drop-shadow(0 0 6px rgba(94,234,212,0.3));">
+              <animate attributeName="stroke-dasharray" values="0,100; 100,0" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+            </path>
+
+            <path stroke="url(#ps-grad)" stroke-width="4" fill="none" stroke-linecap="round"
+                  d="M 130 140 Q 100 340 290 430" style="filter: drop-shadow(0 0 6px rgba(252,211,77,0.3));">
+              <animate attributeName="stroke-dasharray" values="0,100; 100,0" dur="4s" repeatCount="indefinite" begin="1.6s"/>
+            </path>
+          </svg>
+
+          <!-- Personas -->
+          <div class="persona" id="student" onclick="showPanelsForPersona('student')" style="
+            position: absolute; bottom: 15%; left: 170px; width: 84px; height: 84px;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; font-weight: 600; font-size: 12.5px; box-shadow: 0 6px 18px rgba(99,102,241,0.25);
+            cursor: pointer; z-index: 5; transition: all 0.28s ease;
+          " onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 30px; margin-bottom: 3px;">👧</div>
+            Student
+          </div>
+
+          <div class="persona" id="teacher" onclick="showPanelsForPersona('teacher')" style="
+            position: absolute; top: 15%; right: 15%; width: 84px; height: 84px;
+            background: linear-gradient(135deg, #5eead4, #2dd4bf);
+            border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; font-weight: 600; font-size: 12.5px; box-shadow: 0 6px 18px rgba(45,212,191,0.25);
+            cursor: pointer; z-index: 5; transition: all 0.28s ease;
+          " onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 30px; margin-bottom: 3px;">👩‍🏫</div>
+            Teacher
+          </div>
+
+          <div class="persona" id="parent" onclick="showPanelsForPersona('parent')" style="
+            position: absolute; top: 15%; left: 15%; width: 84px; height: 84px;
+            background: linear-gradient(135deg, #fcd34d, #fbbf24);
+            border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: white; font-weight: 600; font-size: 12.5px; box-shadow: 0 6px 18px rgba(251,191,36,0.25);
+            cursor: pointer; z-index: 5; transition: all 0.28s ease;
+          " onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+            <div style="font-size: 26px; margin-bottom: 3px;">👨‍👩‍👧</div>
+            Parent
+          </div>
+
+          <!-- Panels -->
+          <div class="content-panel" id="panel1" style="
+            position: absolute; width: 210px; height: 158px; overflow-y: auto;
+            background: rgba(30, 41, 59, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99,102,241,0.18);
+            color: #e2e8f0;
+            padding: 14px 16px; border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            opacity: 0; visibility: hidden; transition: all 0.28s ease; z-index: 10;
+            font-size: 13px; line-height: 1.45;
+          ">
+            <h4 id="panel1-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #c7d2fe; text-align: center;"></h4>
+            <p id="panel1-text" style="margin: 0; color: #cbd5e1;"></p>
+          </div>
+
+          <div class="content-panel" id="panel2" style="
+            position: absolute; width: 210px; height: 158px; overflow-y: auto;
+            background: rgba(30, 41, 59, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99,102,241,0.18);
+            color: #e2e8f0;
+            padding: 14px 16px; border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            opacity: 0; visibility: hidden; transition: all 0.28s ease; z-index: 10;
+            font-size: 13px; line-height: 1.45;
+          ">
+            <h4 id="panel2-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #c7d2fe; text-align: center;"></h4>
+            <p id="panel2-text" style="margin: 0; color: #cbd5e1;"></p>
+          </div>
+
+        </div>
+
+        <!-- Delayed hint pill with glowing metallic blue border -->
+        <div id="persona-hint-pill" style="
+          position: absolute;
+          bottom: -20px;                    /* ← moved up significantly */
+          left: 50%;
+          transform: translateX(-50%) translateY(0);  /* adjusted */
+          background: rgba(30, 41, 59, 0.78);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          color: #d1d5db;
+          font-size: 0.95rem;
+          font-weight: 500;
+          padding: 10px 24px;
+          border-radius: 999px;
+          border: 1.5px solid transparent;
+          background-clip: padding-box;
+          box-shadow: 
+            0 0 0 1px rgba(96, 165, 250, 0.18),
+            inset 0 0 12px rgba(59, 130, 246, 0.08);
+          white-space: nowrap;
+          opacity: 0;
+          pointer-events: none;
+          z-index: 6;
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        ">
+
+          <!-- Inner glowing border remains the same -->
+          <div style="
+            position: absolute;
+            inset: -2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, 
+              #60a5fa 0%, 
+              #3b82f6 25%, 
+              #60a5fa 50%, 
+              #93c5fd 75%, 
+              #60a5fa 100%
+            );
+            background-size: 200% 200%;
+            animation: metallicGlow 4s linear infinite;
+            mask: 
+              linear-gradient(#fff 0 0) content-box, 
+              linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            pointer-events: none;
+            z-index: -1;
+          "></div>
+
+          👆 Tap a persona to see how they connect
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-skills" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="feature-point" style="
+          background: rgba(168, 85, 247, 0.07);
+          border-left: 3px solid #a855f7;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(168,85,247,0.13)'" onmouseout="this.style.background='rgba(168,85,247,0.07)'">Linguistics & Language</div>
+
+        <div class="feature-point" style="
+          background: rgba(139, 92, 246, 0.07);
+          border-left: 3px solid #8b5cf6;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(139,92,246,0.13)'" onmouseout="this.style.background='rgba(139,92,246,0.07)'">Education & Instruction</div>
+
+        <div class="feature-point" style="
+          background: rgba(59, 130, 246, 0.08);
+          border-left: 3px solid #3b82f6;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(59,130,246,0.14)'" onmouseout="this.style.background='rgba(59,130,246,0.08)'">Typing Fluency</div>
+
+        <div class="feature-point" style="
+          background: rgba(234, 179, 8, 0.06);
+          border-left: 3px solid #eab308;
+          padding: 1rem 1.2rem;
+          border-radius: 10px;
+          color: #e2e8f0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+        " onmouseover="this.style.background='rgba(234,179,8,0.12)'" onmouseout="this.style.background='rgba(234,179,8,0.06)'">Expanding Horizons…</div>
+      </div>
+
+    </div>
+
+    <!-- Footer note -->
+   
+    <div class="modal-footer-note" style="
+      text-align: center;
+      margin-top: auto;                   
+      margin-bottom: 1.5rem;              
+      padding: 1rem 1.6rem;
+      background: rgba(30, 41, 59, 0.4);
+      border-radius: 14px;
+      border: 1px solid #1e293b;
+      font-style: italic;
+      color: #94a3b8;
+      font-size: 0.96rem;
+      backdrop-filter: blur(8px);
+      line-height: 1.45;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    ">
+      Click the ✨ tab anytime to return • Begin building exceptional skills today
+    </div>
+
+  </div>
+</div>
+
+<!-- Inline styles for metallic glow animation -->
+<style>
+  @keyframes metallicGlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+
+
+<!-- ===== MODAL JAVASCRIPT – Required for interactive ecosystem panels ===== -->
+<script>
+  let activePersona = null;
+
+  const personaColors = {
+      student: 'linear-gradient(135deg, #a78bfa, #7c3aed)',
+      teacher: 'linear-gradient(135deg, #34d399, #059669)',
+      parent: 'linear-gradient(135deg, #fbbf24, #d97706)'
+  };
+   const isMobile = window.innerWidth <= 768;
+  const panelConfigs = {
+      student: [
+          { 
+              title: 'Student → Teacher', 
+              text: 'Stories & feedback to teachers', 
+              pos: isMobile 
+                    ? { top: '-25%', right: '5%', transform: 'translateX(70%)' }   
+                    :{ top: '-10%', right: '5%', transform: 'translateX(70%)' } 
+          },
+          { 
+              title: 'Parent → Student', 
+              text: 'Encouragement from parents', 
+              pos: isMobile 
+                    ? { bottom: '-25%', left: '20%', transform: 'translateX(-50%)' }   
+                    : { top: '-10%', left: '5%', transform: 'translateX(-75%)' }
+          }
+      ],
+      teacher: [
+          { 
+              title: 'Teacher → Parent', 
+              text: 'Progress to parents', 
+              pos: isMobile 
+                    ? { top: '-25%', left: '5%', transform: 'translateX(-75%)'  }   
+                    : { top: '-10%', left: '5%', transform: 'translateX(-75%)'  } 
+          },
+          { 
+              title: 'Student → Teacher', 
+              text: 'Insights from students', 
+              pos: isMobile 
+                    ? { bottom: '-25%', left: '20%', transform: 'translateX(-50%)' }   
+                    : { bottom: '-10%', left: '20%', transform: 'translateX(-50%)' } 
+          }
+      ],
+      parent: [
+          { 
+              title: 'Parent → Student', 
+              text: 'Support builds confidence', 
+              pos: isMobile 
+                    ? { bottom: '-25%', left: '35%', transform: 'translateX(50%)' }   
+                    : { bottom: '-10%', left: '35%', transform: 'translateX(50%)' } 
+          },
+          { 
+              title: 'Teacher → Parent', 
+              text: 'Updates foster involvement', 
+              pos: isMobile 
+                    ? { top: '-25%', right: '5%', transform: 'translateX(70%)' }  
+                    : { top: '-10%', right: '5%', transform: 'translateX(70%)' } 
+          }
+      ]
+  };
+
+  function showPanelsForPersona(personaType) {
+
+
+      // Close all panels and reset scales
+      document.querySelectorAll('.content-panel').forEach(p => {
+          p.style.opacity = '0';
+          p.style.visibility = 'hidden';
+          p.style.top = '';
+          p.style.bottom = '';
+          p.style.left = '';
+          p.style.right = '';
+          p.style.transform = '';
+      });
+      document.querySelectorAll('.persona').forEach(p => p.style.transform = 'scale(1)');
+
+      const clickedPersona = document.getElementById(personaType);
+      if (activePersona === personaType) {
+          activePersona = null;
+          return;
+      }
+
+      clickedPersona.style.transform = 'scale(1.1)';
+      activePersona = personaType;
+
+      const configs = panelConfigs[personaType];
+      const color = personaColors[personaType];
+
+      const panel1 = document.getElementById('panel1');
+      document.getElementById('panel1-title').textContent = configs[0].title;
+      document.getElementById('panel1-text').textContent = configs[0].text;
+      panel1.style.background = color;
+      panel1.style.top = '';
+      panel1.style.bottom = '';
+      panel1.style.left = '';
+      panel1.style.right = '';
+      panel1.style.transform = '';
+      Object.assign(panel1.style, configs[0].pos);
+      panel1.style.opacity = '1';
+      panel1.style.visibility = 'visible';
+
+      const panel2 = document.getElementById('panel2');
+      document.getElementById('panel2-title').textContent = configs[1].title;
+      document.getElementById('panel2-text').textContent = configs[1].text;
+      panel2.style.background = color;
+      panel2.style.top = '';
+      panel2.style.bottom = '';
+      panel2.style.left = '';
+      panel2.style.right = '';
+      panel2.style.transform = '';
+      Object.assign(panel2.style, configs[1].pos);
+      panel2.style.opacity = '1';
+      panel2.style.visibility = 'visible';
+  }
+
+  // Close panels when clicking outside any persona
+  document.addEventListener('click', e => {
+      if (!e.target.closest('.persona')) {
+          document.querySelectorAll('.content-panel').forEach(p => {
+              p.style.opacity = '0';
+              p.style.visibility = 'hidden';
+              p.style.top = '';
+              p.style.bottom = '';
+              p.style.left = '';
+              p.style.right = '';
+              p.style.transform = '';
+          });
+          document.querySelectorAll('.persona').forEach(p => p.style.transform = 'scale(1)');
+          activePersona = null;
+      }
+  });
+</script>
+
+  <!-- ===== MODAL JAVASCRIPT (NEW) ===== -->
+  <script>
+    // Modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const closeBtn = document.getElementById('closeBtn');
+      const sliderTab = document.getElementById('sliderTab');
+      const hasVisited = localStorage.getItem('aiWritingCoachVisited');
+
+      // Always show slider tab
+      sliderTab.style.display = 'flex';
+
+      // Open modal on first visit only
+      // if (!hasVisited) {
+        setTimeout(() => {
+          openModal();
+          localStorage.setItem('aiWritingCoachVisited', 'true');
+        }, 500); // Small delay for smooth hero animation
+      // }
+
+      function openModal() {
+        modalOverlay.classList.add('open');
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('open');
+      }
+
+      // Event listeners
+      closeBtn.addEventListener('click', closeModal);
+      sliderTab.addEventListener('click', openModal);
+      
+      // Close on overlay background click
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+    });
+  </script>
+  <script>
+    setTimeout(() => {
+      const hint = document.getElementById('persona-hint-pill');
+      if (hint) {
+        hint.style.opacity = '0.94';
+        hint.style.transform = 'translateX(-50%) translateY(0)';
+        
+        // Auto-hide after ~5–6 seconds of visibility
+        setTimeout(() => {
+          hint.style.opacity = '0';
+          hint.style.transform = 'translateX(-50%) translateY(15px)';
+        }, 5800);
+      }
+    }, 2600); // appears after ~2.6 seconds
+  </script>
+
 </body>
 </html>
