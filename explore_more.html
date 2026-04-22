@@ -1324,40 +1324,83 @@ const personaColors = {
     parent: 'linear-gradient(135deg, #fbbf24, #d97706)'
 };
 
+const colors = {
+        student: { bg: 'linear-gradient(135deg, #a78bfa, #7c3aed)', text: '#f0f9ff', title: '#c4d0ff' },
+        teacher: { bg: 'linear-gradient(135deg, #34d399, #059669)', text: '#f0fdfa', title: '#99f6e4' },
+        parent:  { bg: 'linear-gradient(135deg, #ff7b00, #ff9500)', text: '#ffffff', title: '#fef08c' }
+    };
+
 const panelConfigs = {
     student: [
         { 
             title: 'Student → Teacher', 
-            text: 'Stories & feedback to teachers', 
+              text: `
+                <ul>
+                    <li>Submit stories to teachers</li>
+                    <li>Insights on student wellbeing</li>
+                    <li>Insights on grammar and spelling</li>
+                </ul>
+            `, 
             pos: { top: '-10%', right: '5%', transform: 'translateX(70%)' } 
         },
         { 
-            title: 'Parent → Student', 
-            text: 'Encouragement from parents', 
+            title: 'Student → Parent', 
+              text: `
+                <ul>
+                    <li>Imagination insights</li>
+                    <li>Wellbeing insights</li>
+                    <li>Grammar and spelling insights</li>
+                </ul>
+            `,
             pos: { top: '-10%', left: '5%', transform: 'translateX(-75%)' } 
         }
     ],
     teacher: [
         { 
-            title: 'Teacher → Parent', 
-            text: 'Progress to parents', 
+            title: 'Teacher → Parent',  
+              text: `
+                <ul>
+                    <li>Real-time notifications</li>
+                    <li>Wellbeing insights</li>
+                    <li>Grammar and spelling insights</li>
+                </ul>
+            `, 
             pos: { top: '-10%', left: '5%', transform: 'translateX(-75%)'  } 
         },
         { 
-            title: 'Student → Teacher', 
-            text: 'Insights from students', 
+            title: 'Teacher → Student', 
+              text: `
+                <ul>
+                    <li>Age-wise assignments</li>
+                    <li>Language assignments</li>
+                    <li>Guidance on responsible AI skills usage</li>
+                    <li>Guide students in AI-powered next-gen skills</li>
+                </ul>
+              `, 
             pos: { bottom: '-10%', left: '20%', transform: 'translateX(-50%)' } 
         }
     ],
     parent: [
         { 
             title: 'Parent → Student', 
-            text: 'Support builds confidence', 
+              text: `
+                <ul>
+                    <li>Support language learning</li>
+                    <li>Print books for kids</li>
+                    <li>Download videos for kids</li>
+                </ul>
+              `,
             pos: { bottom: '-10%', left: '35%', transform: 'translateX(50%)' } 
         },
         { 
-            title: 'Teacher → Parent', 
-            text: 'Updates foster involvement', 
+            title: 'Parent → Teacher', 
+              text: `
+                <ul>
+                    <li>Collaborate to support kids</li>
+                    <li>Explore kids' talents</li>
+                    <li>Feedback on learning progress</li>
+                </ul>
+              `, 
             pos: { top: '-10%', right: '5%', transform: 'translateX(70%)' } 
         }
     ]
@@ -1389,13 +1432,16 @@ function showPanelsForPersona(personaType) {
 
     // Get configs for this persona
     const configs = panelConfigs[personaType];
-    const color = personaColors[personaType];
+    // const color = personaColors[personaType];
+    const color = colors[personaType];
 
     // Set panel 1 (with full reset first)
     const panel1 = document.getElementById('panel1');
     document.getElementById('panel1-title').textContent = configs[0].title;
-    document.getElementById('panel1-text').textContent = configs[0].text;
-    panel1.style.background = color;
+    document.getElementById('panel1-title').style.color = color.title;
+    document.getElementById('panel1-text').innerHTML = configs[0].text;
+    document.getElementById('panel1-text').style.color = color.text;
+    panel1.style.background = color.bg;
     // ← NEW: Reset again + assign fresh positions
     panel1.style.top = '';
     panel1.style.bottom = '';
@@ -1409,8 +1455,10 @@ function showPanelsForPersona(personaType) {
     // Set panel 2 (with full reset first)
     const panel2 = document.getElementById('panel2');
     document.getElementById('panel2-title').textContent = configs[1].title;
-    document.getElementById('panel2-text').textContent = configs[1].text;
-    panel2.style.background = color;
+    document.getElementById('panel2-title').style.color = color.title;
+    document.getElementById('panel2-text').innerHTML = configs[1].text;
+    document.getElementById('panel2-text').style.color = color.text;
+    panel2.style.background = color.bg;
     // ← NEW: Reset again + assign fresh positions
     panel2.style.top = '';
     panel2.style.bottom = '';
@@ -1509,13 +1557,13 @@ document.addEventListener('click', e => {
                 </div>
                 <div class="problem-card">
                     <div class="icon">🛠️</div>
-                    <h3>Skill Learning via Education Concern </h3>
-                    <p>Schools need modern ways and AI to learn future skills without adverse effect of the digital world</p>
+                    <h3>Smart AI Education: Future-Ready, Risk-Free</h3>
+                    <p>Schools must embrace modern tools and AI to equip students with future-ready skills — while safeguarding them from the negative impacts of the digital world.</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon">🔥</div>
-                    <h3>Future ready Skills </h3>
-                    <p>Future is AI. Using and learnig via AI and learning AI</p>
+                    <h3>Integrating AI in Education: Building Future Skills Safely </h3>
+                    <p>The future is AI. Embrace it. Use it. Learn with it. Master it.</p>
                 </div>
             </div>
         </div>
@@ -1880,7 +1928,7 @@ document.addEventListener('click', e => {
                     <h4>Contact</h4>
                     <a href="mailto:hello@avygen.com">hello@avygen.com</a>
                     <a href="tel:+911234567890">+91 123 456 7890</a>
-                    <p>Mumbai, India</p>
+                    <p>Pune, India</p>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>

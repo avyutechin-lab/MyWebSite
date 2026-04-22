@@ -1227,10 +1227,10 @@
         <div class="flip-front">
           <img src="https://avyutechin-lab.github.io/MyWebSite/Self-LearningInsights.png" alt="Self Learning"/>
           <h2>Self-Learning Insights</h2>
-          <p>Engage in self-learning through interactive, visual, and psychological insights.</p>
+          <p>Engage in self-learning through interactive and visual insights.</p>
         </div>
         <div class="flip-back">
-          <p>Discover the power of personalized, AI-driven learning with real-time visual and psychological insights. Engage actively with interactive tools that adapt to your style and pace, helping you understand yourself better while mastering new skills.<br>Empower your growth with self-awareness and guided discovery—unlock your full potential through AI-enhanced learning.</p>
+          <p>Discover the power of personalized, AI-driven learning with real-time visual insights. Engage actively with interactive tools that adapt to your style and pace, helping you understand yourself better while mastering new skills.<br>Empower your growth with self-awareness and guided discovery—unlock your full potential through AI-enhanced learning.</p>
         </div>
       </div>
     </div>
@@ -1242,7 +1242,7 @@
     <div class="tags">
       <span>Literature</span>
       <span>IT &amp; User Storytelling</span>
-      <span>Psychology</span>
+      <span>Skill Enhancement</span>
       <span>Language Learning</span>
       <span>Education</span>
       <span>Career Development</span>
@@ -1527,8 +1527,8 @@
             opacity: 0; visibility: hidden; transition: all 0.28s ease; z-index: 10;
             font-size: 13px; line-height: 1.45;
           ">
-            <h4 id="panel1-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #c7d2fe; text-align: center;"></h4>
-            <p id="panel1-text" style="margin: 0; color: #cbd5e1;"></p>
+            <h4 id="panel1-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #ffffff; text-align: center;"></h4>
+            <p id="panel1-text" style="margin: 0; color: #ffffff;"></p>
           </div>
 
           <div class="content-panel" id="panel2" style="
@@ -1542,8 +1542,8 @@
             opacity: 0; visibility: hidden; transition: all 0.28s ease; z-index: 10;
             font-size: 13px; line-height: 1.45;
           ">
-            <h4 id="panel2-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #c7d2fe; text-align: center;"></h4>
-            <p id="panel2-text" style="margin: 0; color: #cbd5e1;"></p>
+            <h4 id="panel2-title" style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #ffffff; text-align: center;"></h4>
+            <p id="panel2-text" style="margin: 0; color: #ffffff;"></p>
           </div>
 
         </div>
@@ -1698,21 +1698,44 @@
   const personaColors = {
       student: 'linear-gradient(135deg, #a78bfa, #7c3aed)',
       teacher: 'linear-gradient(135deg, #34d399, #059669)',
-      parent: 'linear-gradient(135deg, #fbbf24, #d97706)'
+      parent: 'linear-gradient(135deg, #ff7b00, #ff9500)'
   };
+
+const colors = {
+        student: { bg: 'linear-gradient(135deg, #a78bfa, #7c3aed)', text: '#f0f9ff', title: '#c4d0ff' },
+        teacher: { bg: 'linear-gradient(135deg, #34d399, #059669)', text: '#f0fdfa', title: '#99f6e4' },
+        parent:  { bg: 'linear-gradient(135deg, #ff7b00, #ff9500)', text: '#ffffff', title: '#fef08c' }
+    };
+
+
+
+
+
    const isMobile = window.innerWidth <= 768;
   const panelConfigs = {
       student: [
           { 
               title: 'Student → Teacher', 
-              text: 'Stories & feedback to teachers', 
+              text: `
+                <ul>
+                    <li>Submit stories to teachers</li>
+                    <li>Insights on student wellbeing</li>
+                    <li>Insights on grammar and spelling</li>
+                </ul>
+            `, 
               pos: isMobile 
                     ? { top: '-25%', right: '5%', transform: 'translateX(70%)' }   
                     :{ top: '-10%', right: '5%', transform: 'translateX(70%)' } 
           },
           { 
-              title: 'Parent → Student', 
-              text: 'Encouragement from parents', 
+              title: 'Student → Parent', 
+              text: `
+                <ul>
+                    <li>Imagination insights</li>
+                    <li>Wellbeing insights</li>
+                    <li>Grammar and spelling insights</li>
+                </ul>
+            `, 
               pos: isMobile 
                     ? { bottom: '-25%', left: '20%', transform: 'translateX(-50%)' }   
                     : { top: '-10%', left: '5%', transform: 'translateX(-75%)' }
@@ -1720,15 +1743,28 @@
       ],
       teacher: [
           { 
-              title: 'Teacher → Parent', 
-              text: 'Progress to parents', 
+              title: 'Teacher → Parent',  
+              text: `
+                <ul>
+                    <li>Real-time notifications</li>
+                    <li>Wellbeing insights</li>
+                    <li>Grammar and spelling insights</li>
+                </ul>
+            `,
               pos: isMobile 
                     ? { top: '-25%', left: '5%', transform: 'translateX(-75%)'  }   
                     : { top: '-10%', left: '5%', transform: 'translateX(-75%)'  } 
           },
           { 
-              title: 'Student → Teacher', 
-              text: 'Insights from students', 
+              title: 'Teacher → Student', 
+              text: `
+                <ul>
+                    <li>Age-wise assignments</li>
+                    <li>Language assignments</li>
+                    <li>Guidance on responsible AI skills usage</li>
+                    <li>Guide students in AI-powered next-gen skills</li>
+                </ul>
+              `,
               pos: isMobile 
                     ? { bottom: '-25%', left: '20%', transform: 'translateX(-50%)' }   
                     : { bottom: '-10%', left: '20%', transform: 'translateX(-50%)' } 
@@ -1737,14 +1773,27 @@
       parent: [
           { 
               title: 'Parent → Student', 
-              text: 'Support builds confidence', 
+              text: `
+                <ul>
+                    <li>Encouragement of creativity</li>
+                    <li>Support language learning</li>
+                    <li>Print books for kids</li>
+                    <li>Download videos for kids</li>
+                </ul>
+              `,
               pos: isMobile 
                     ? { bottom: '-25%', left: '35%', transform: 'translateX(50%)' }   
                     : { bottom: '-10%', left: '35%', transform: 'translateX(50%)' } 
           },
           { 
-              title: 'Teacher → Parent', 
-              text: 'Updates foster involvement', 
+              title: 'Parent → Teacher', 
+              text: `
+                <ul>
+                    <li>Collaborate to support kids</li>
+                    <li>Explore kids' talents</li>
+                    <li>Feedback on learning progress</li>
+                </ul>
+              `,
               pos: isMobile 
                     ? { top: '-25%', right: '5%', transform: 'translateX(70%)' }  
                     : { top: '-10%', right: '5%', transform: 'translateX(70%)' } 
@@ -1777,12 +1826,15 @@
       activePersona = personaType;
 
       const configs = panelConfigs[personaType];
-      const color = personaColors[personaType];
+      // const color = personaColors[personaType];
+      const color = colors[personaType];
 
       const panel1 = document.getElementById('panel1');
       document.getElementById('panel1-title').textContent = configs[0].title;
-      document.getElementById('panel1-text').textContent = configs[0].text;
-      panel1.style.background = color;
+      document.getElementById('panel1-title').style.color = color.title;
+      document.getElementById('panel1-text').innerHTML = configs[0].text;
+      document.getElementById('panel1-text').style.color = color.text;
+      panel1.style.background = color.bg;
       panel1.style.top = '';
       panel1.style.bottom = '';
       panel1.style.left = '';
@@ -1794,8 +1846,10 @@
 
       const panel2 = document.getElementById('panel2');
       document.getElementById('panel2-title').textContent = configs[1].title;
-      document.getElementById('panel2-text').textContent = configs[1].text;
-      panel2.style.background = color;
+      document.getElementById('panel2-title').style.color = color.title;
+      document.getElementById('panel2-text').innerHTML = configs[1].text;
+      document.getElementById('panel2-text').style.color = color.text;
+      panel2.style.background = color.bg;
       panel2.style.top = '';
       panel2.style.bottom = '';
       panel2.style.left = '';
